@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>spring-boot-hello</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>Spring Boot Hello World Example</name>
     <version>1.0</version>
     <parent>
