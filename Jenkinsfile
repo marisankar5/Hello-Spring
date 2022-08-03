@@ -39,7 +39,7 @@ pipeline {
         stage("Deploy") {
                 steps {
                     sshagent(['servertwo']) {
-                        sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Final_result/target/*.war ubuntu@18.234.214.172:/var/lib/tomcat9/webapps"
+                        sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Final_result/target/*.war ubuntu@18.234.214.172:/var/lib/tomcat9/webapps/hello.war"
                     }
                 }
             }
