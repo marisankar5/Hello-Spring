@@ -38,9 +38,9 @@ pipeline {
             }
         stage("Deploy") {
                 steps {
-                    sshagent(['Servertwo']) {
-                        sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Script_job/target/*.war ubuntu@18.234.214.172:/var/lib/tomcat9/webapps/hello.war"
-                    }
+                    sshagent(['Ansible']){
+                sh"ansible-playbook -i /etc/ansible/hosts /etc/ansible/script.yaml -u root"
+                }
                 }
             }
 
