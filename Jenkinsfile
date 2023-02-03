@@ -38,12 +38,19 @@ pipeline {
                     s3Upload consoleLogLevel: 'INFO', dontSetBuildResultOnFailure: false, dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'springjar-01', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'ap-south-1', showDirectlyInBrowser: false, sourceFile: '**/target/*.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 'hellos3', userMetadata: []
                 }
             }
-        stage("Deploy") {
-                steps {
-                    sshagent(['Ansible']){
-                sh"ansible-playbook -i /etc/ansible/hosts /etc/ansible/script.yaml -u root"
+//         stage("Deploy") {
+//                 steps {
+//                     sshagent(['Ansible']){
+//                 sh"ansible-playbook -i /etc/ansible/hosts /etc/ansible/script.yaml -u root"
+//                 }
+//                 }
+//             }
+                stage("Deploy") {
+                   steps {
+                sshagent(['deployuser']) {
+                  sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/springBuilld@2/target/hellospring.war ubuntu@3.7.68.133:/var/lib/tomcat9/webapps"
                 }
-                }
+            }
             }
 
         }
