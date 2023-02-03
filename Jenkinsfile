@@ -2,12 +2,12 @@ pipeline {
     agent any
     stages {
         stage('Preparation') {
-            steps { // for display purposes
-                // Get some code from a GitHub repository
+            steps { 
+                try {
                 git 'https://github.com/marisankar5/Hello-spring.git'
-                // Get the Maven tool.
-                // ** NOTE: This 'M3' Maven tool must be configured
-                // **       in the global configuration.
+                } catch(err) {
+                    sh "echo error in Prepartion"
+                }
             }
         }
         stage('Build') {
