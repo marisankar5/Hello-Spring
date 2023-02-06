@@ -32,9 +32,9 @@ pipeline {
         }
          stage("Upload to AWS") {
              steps {
-                    sh 'echo \'Hello world Again!\''
-                    sh 'pwd'
-                     sh 'whoami'
+                   // sh 'echo \'Hello world Again!\''
+                   // sh 'pwd'
+                   //  sh 'whoami'
                     s3Upload consoleLogLevel: 'INFO', dontSetBuildResultOnFailure: false, dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'springjar-01', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'ap-south-1', showDirectlyInBrowser: false, sourceFile: '**/target/*.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 'hellos3', userMetadata: []
                 }
             }
