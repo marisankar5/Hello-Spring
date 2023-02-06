@@ -48,7 +48,7 @@ pipeline {
                 stage("Deploy") {
                    steps {
                 sshagent(['deployuser']) {
-                  sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/springBuilld@2/target/hellospring.war ubuntu@15.206.163.95 :/var/lib/tomcat9/webapps"
+                  sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/new-pipeline-iyappa@2/target/hellospring.war ubuntu@15.206.163.95 :/var/lib/tomcat9/webapps"
                 }
             }
             }
