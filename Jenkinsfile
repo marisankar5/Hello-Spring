@@ -22,11 +22,11 @@ pipeline {
                         bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
                     }
                 }
-               // script
-                   // {
-                    //    junit '**/target/surefire-reports/TEST-*.xml'
-                      //  archiveArtifacts 'target/*.war'
-                //}
+                script
+                    {
+                        junit '**/target/surefire-reports/TEST-*.xml'
+                        archiveArtifacts 'target/*.war'
+                }
                 }
             }
         }
@@ -35,7 +35,7 @@ pipeline {
                     sh 'echo \'Hello world Again!\''
                     sh 'pwd'
                     sh 'whoami'
-                    s3Upload consoleLogLevel: 'INFO', dontSetBuildResultOnFailure: false, dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'springjar-01', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'ap-south-1', showDirectlyInBrowser: false, sourceFile: '**/target/*.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 'hellos3', userMetadata: []
+                    s3Upload consoleLogLevel: 'INFO', dontSetBuildResultOnFailure: false, dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'springjar-01', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: true, noUploadOnFailure: false, selectedRegion: 'ap-south-1', showDirectlyInBrowser: false, sourceFile: '**/target/*.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 'hellos3', userMetadata: []
                 }
             }
 //         stage("Deploy") {
