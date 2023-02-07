@@ -47,8 +47,8 @@ pipeline {
 //             }
                 stage("Deploy") {
                    steps {
-                sshagent(['deploytomcat']) {
-                  sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/new-pipeline-iyappa/target/hellospring.war ubuntu@15.206.163.95:/var/lib/tomcat9/webapps"
+                sshagent(['deploy_user']) {
+                  sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/project_pipeline/target/hellospring.war ubuntu@13.126.125.5:/var/lib/tomcat9/webapps"
                 }
             }
             }
